@@ -4,7 +4,6 @@ A cloud migration design and proof of concept (PoC) for **WinLocal Giveaways**, 
 
 > Built as part of the *Security Architecture* module (Year 3, BSc Digital Forensics & Cybersecurity, TU Dublin).
 
-📄 **[Read the full report (PDF)](./WinLocal-AWS-Architecture-Report.pdf)**
 
 ---
 
@@ -58,13 +57,12 @@ Even if an attacker compromises a web server, it can only reach the database on 
 
 ## Proof of Concept: What Was Built & Tested
 
-- ✅ Custom VPC with 6 subnets across 2 AZs, Internet Gateway, NAT Gateway and route tables
-- ✅ Bastion host with SSH jump-host access to private instances
-- ✅ Custom AMI → Launch Template → Auto Scaling Group
-- ✅ **Auto scaling verified**: used `stress` to push CPU above 60%, which triggered a CloudWatch alarm and a scale-out event
-- ✅ **Load balancing verified**: refreshing the ALB URL showed requests served by different instance IDs
-- ✅ RDS MySQL in isolated DB subnets, connected to a sample web app
-- ✅ S3 static website as a maintenance/failover page
+Custom VPC with 6 subnets across 2 AZs, Internet Gateway, NAT Gateway and route tables
+Bastion host with SSH jump-host access to private instances Custom AMI → Launch Template → Auto Scaling Group
+**Auto scaling verified**: used `stress` to push CPU above 60%, which triggered a CloudWatch alarm and a scale-out event
+**Load balancing verified**: refreshing the ALB URL showed requests served by different instance IDs
+RDS MySQL in isolated DB subnets, connected to a sample web app
+S3 static website as a maintenance/failover page
 
 ### Proposed (designed, outside PoC scope)
 - **AWS WAF**: OWASP Top 10 managed rules in front of the ALB, plus request logging for an audit trail
